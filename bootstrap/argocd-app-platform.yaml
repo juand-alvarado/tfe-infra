@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<tu-usuario>/tfe-infra.git
+    repoURL: https://github.com/juand-alvarado/tfe-infra.git
     targetRevision: main
     path: platform
   destination:
