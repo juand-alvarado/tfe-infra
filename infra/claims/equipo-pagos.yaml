@@ -1,4 +1,3 @@
-# claim-test.yaml
 apiVersion: platform.tfe.io/v1alpha1
 kind: NamespaceClaim
 metadata:
