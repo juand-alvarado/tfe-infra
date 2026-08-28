@@ -1,0 +1,10 @@
+# claim-test.yaml
+apiVersion: platform.tfe.io/v1alpha1
+kind: NamespaceClaim
+metadata:
+  name: equipo-pagos
+  namespace: default
+spec:
+  teamName: equipo-pagos
+  cpuQuota: "500m"
+  memoryQuota: "1Gi"

@@ -1,0 +1,27 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xnamespaces.platform.tfe.io
+spec:
+  group: platform.tfe.io
+  names:
+    kind: XNamespace
+    plural: xnamespaces
+  claimNames:
+    kind: NamespaceClaim
+    plural: namespaceclaims
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                teamName: {type: string}
+                cpuQuota: {type: string, default: "2"}
+                memoryQuota: {type: string, default: "4Gi"}
+              required: [teamName]

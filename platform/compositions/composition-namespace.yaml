@@ -1,0 +1,45 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xnamespaces.platform.tfe.io
+spec:
+  compositeTypeRef:
+    apiVersion: platform.tfe.io/v1alpha1
+    kind: XNamespace
+  resources:
+    - name: namespace
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha2
+        kind: Object
+        spec:
+          providerConfigRef: {name: kubernetes-provider}
+          forProvider:
+            manifest:
+              apiVersion: v1
+              kind: Namespace
+              metadata: {}
+      patches:
+        - fromFieldPath: spec.teamName
+          toFieldPath: spec.forProvider.manifest.metadata.name
+    - name: resourcequota
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha2
+        kind: Object
+        spec:
+          providerConfigRef: {name: kubernetes-provider}
+          forProvider:
+            manifest:
+              apiVersion: v1
+              kind: ResourceQuota
+              metadata: {name: default-quota}
+              spec:
+                hard:
+                  requests.cpu: ""
+                  requests.memory: ""
+      patches:
+        - fromFieldPath: spec.teamName
+          toFieldPath: spec.forProvider.manifest.metadata.namespace
+        - fromFieldPath: spec.cpuQuota
+          toFieldPath: spec.forProvider.manifest.spec.hard[requests.cpu]
+        - fromFieldPath: spec.memoryQuota
+          toFieldPath: spec.forProvider.manifest.spec.hard[requests.memory]
