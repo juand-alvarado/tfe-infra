@@ -1,0 +1,9 @@
+apiVersion: platform.tfe.io/v1alpha1
+kind: NamespaceClaim
+metadata:
+  name: ${{ values.teamName }}
+  namespace: default
+spec:
+  teamName: ${{ values.teamName }}
+  cpuQuota: "${{ values.cpuQuota }}"
+  memoryQuota: "${{ values.memoryQuota }}"

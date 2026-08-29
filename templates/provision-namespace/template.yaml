@@ -1,0 +1,43 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: provision-namespace
+  title: Provisionar Namespace de Equipo
+  description: Crea un namespace con quota de recursos vía Crossplane
+spec:
+  owner: platform-team
+  type: infrastructure
+  parameters:
+    - title: Datos del equipo
+      required: [teamName]
+      properties:
+        teamName:
+          title: Nombre del equipo
+          type: string
+        cpuQuota:
+          title: CPU Quota
+          type: string
+          default: "2"
+        memoryQuota:
+          title: Memory Quota
+          type: string
+          default: "4Gi"
+  steps:
+    - id: fetch
+      name: Generar manifiesto
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          teamName: ${{ parameters.teamName }}
+          cpuQuota: ${{ parameters.cpuQuota }}
+          memoryQuota: ${{ parameters.memoryQuota }}
+    - id: publish
+      name: Publicar en tfe-infra
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?repo=tfe-infra&owner=<tu-usuario>
+        branchName: nuevo-namespace-${{ parameters.teamName }}
+        title: Nuevo namespace para ${{ parameters.teamName }}
+        description: Generado automáticamente desde Backstage
+        targetPath: infra/claims
