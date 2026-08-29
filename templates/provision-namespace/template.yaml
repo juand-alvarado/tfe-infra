@@ -36,7 +36,7 @@ spec:
       name: Publicar en tfe-infra
       action: publish:github:pull-request
       input:
-        repoUrl: github.com?repo=tfe-infra&owner=<tu-usuario>
+        repoUrl: github.com?repo=tfe-infra&owner=juand-alvarado
         branchName: nuevo-namespace-${{ parameters.teamName }}
         title: Nuevo namespace para ${{ parameters.teamName }}
         description: Generado automáticamente desde Backstage
