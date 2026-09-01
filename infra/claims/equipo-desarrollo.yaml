@@ -1,0 +1,9 @@
+apiVersion: platform.tfe.io/v1alpha1
+kind: NamespaceClaim
+metadata:
+  name: equipo-desarrollo
+  namespace: default
+spec:
+  teamName: equipo-desarrollo
+  cpuQuota: "0.5"
+  memoryQuota: "1Gi"
