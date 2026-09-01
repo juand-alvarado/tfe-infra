@@ -15,17 +15,17 @@ spec:
           title: Nombre del equipo
           type: string
         cpuQuota:
-        title: CPU Quota (núcleos)
-        type: number
-        default: 0.5
-        minimum: 0.1
-        maximum: 1
-      memoryQuota:
-        title: Memory Quota (GiB)
-        type: number
-        default: 1
-        minimum: 0.5
-        maximum: 2
+          title: CPU Quota (núcleos)
+          type: number
+          default: 0.5
+          minimum: 0.1
+          maximum: 1
+        memoryQuota:
+          title: Memory Quota (GiB)
+          type: number
+          default: 1
+          minimum: 0.5
+          maximum: 2
   steps:
     - id: fetch
       name: Generar manifiesto
