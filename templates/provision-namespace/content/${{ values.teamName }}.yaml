@@ -5,5 +5,5 @@ metadata:
   namespace: default
 spec:
   teamName: ${{ values.teamName }}
-  cpuQuota: "${{ values.cpuQuota }}m"
+  cpuQuota: "${{ values.cpuQuota }}"
   memoryQuota: "${{ values.memoryQuota }}Gi"

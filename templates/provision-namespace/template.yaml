@@ -19,7 +19,7 @@ spec:
         type: number
         default: 0.5
         minimum: 0.1
-        maximum: 500
+        maximum: 1
       memoryQuota:
         title: Memory Quota (GiB)
         type: number
